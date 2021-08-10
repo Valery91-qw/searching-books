@@ -1,4 +1,18 @@
-
-.wrapper {
+.input__wrapper {
     position: relative;
+    width: 500px;
+    margin: 0 auto;
+}
+.input__wrapper i {
+    position: absolute;
+    right: 0;
+}
+.input{
+    width: 100%;
+}
+.icon {
+    padding: 10px;
+    min-width: 30px;
+    background-color: black;
+
 }
