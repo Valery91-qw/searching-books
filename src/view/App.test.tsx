@@ -6,6 +6,6 @@ describe('App component', () => {
     test('On initial rendering, the component must have a header, body, and footer', () => {
         render(<App />)
         expect(screen.getByRole('banner')).toBeInTheDocument()
-        expect(screen.getByRole('document')).toBeInTheDocument()
+        expect(screen.queryByRole('document')).toBeInTheDocument()
     })
 })

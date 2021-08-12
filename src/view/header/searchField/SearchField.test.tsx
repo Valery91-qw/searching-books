@@ -10,7 +10,7 @@ describe('searchField component', () => {
     })
     test('The input element must be selected by placeholder, must display the imprinted text', () => {
         render(<SearchField />)
-        const input = screen.getByPlaceholderText('hello')
+        const input = screen.getByPlaceholderText('Search')
         userEvent.type(input, 'World')
         expect(screen.getByDisplayValue('World')).toBeInTheDocument()
     })
