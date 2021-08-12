@@ -1,13 +1,15 @@
 import axios from "axios";
 import {apiKey} from "./variable";
 
+const API_KEY = process.env.REACT_APP_APIKEY || apiKey
 
 export const googleBookApi = {
-    getBooks() {
-       return  axios.get('https://books.google.com/books/v1', {
-           params : {
-               key: apiKey
-           }
-       })
+    getBooks(searchString: string) {
+      return axios.get(`https://www.googleapis.com/books/v1/volumes`, {
+          params: {
+              key: API_KEY,
+              q: 'javascript',
+          }
+      })
     }
 }
