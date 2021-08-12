@@ -15,4 +15,10 @@ describe('Select component', () => {
             expect(screen.getAllByRole('option').length).toBe(setTwo.length)
         })
     })
+    test('When transferring data to the Select component, option elements with corrected values should be displayed', () => {
+        render(<Select option={setOne}/>)
+        expect(screen.getAllByRole('option').length).toBe(setOne.length)
+        expect(screen.getByDisplayValue(setOne[0])).toBeInTheDocument()
+        expect(screen.queryByDisplayValue(setTwo[2])).not.toBeInTheDocument()
+    })
 })

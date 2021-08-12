@@ -7,6 +7,5 @@ describe('App component', () => {
         render(<App />)
         expect(screen.getByRole('banner')).toBeInTheDocument()
         expect(screen.getByRole('document')).toBeInTheDocument()
-        expect(screen.getByRole('contentinfo')).toBeInTheDocument()
     })
 })

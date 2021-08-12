@@ -1,18 +1,16 @@
 .input__wrapper {
-    position: relative;
-    width: 500px;
+    display: flex;
+    width: 30%;
     margin: 0 auto;
-}
-.input__wrapper i {
-    position: absolute;
-    right: 0;
+    border: 1px solid black;
 }
 .input{
     width: 100%;
+    border: none;
 }
 .icon {
+    display: inline;
     padding: 10px;
     min-width: 30px;
     background-color: black;
-
 }

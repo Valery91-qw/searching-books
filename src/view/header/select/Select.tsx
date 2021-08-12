@@ -7,7 +7,7 @@ export const Select = (props: PropsType) => {
 
     return(
         <select>
-            {props.option.map((el, i) => <option key={i + el}>{el}</option>)}
+            {props.option.map((el, i) => <option key={i + el} value={el}>{el}</option>)}
         </select>
     )
 }
