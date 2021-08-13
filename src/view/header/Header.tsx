@@ -1,18 +1,20 @@
 import {SearchField} from "./searchField/SearchField";
 import style from "./Header.module.css"
-import {Select} from "./select/Select";
+import {SearchOptions} from "./searchOptions/SearchOptions";
+import {useSelector} from "react-redux";
+import {RootReducerType} from "../../bll/store";
 
 export const Header = () => {
 
-    const select1 = ["all", "art", "biography", "computers", "history", "medical", "poetry"]
-    const select2 = ["relevance", "newest"]
+    const category = useSelector<RootReducerType, Array<string>>(state => state.search.categories)
+    const sorted = useSelector<RootReducerType, Array<string>>(state => state.search.sorted)
 
     return(
         <header className={style.wrapper}>
             <h2>Search for books</h2>
             <SearchField />
-            <Select option={select1} />
-            <Select option={select2} />
+            <SearchOptions option={category} />
+            <SearchOptions option={sorted} />
         </header>
     )
 }

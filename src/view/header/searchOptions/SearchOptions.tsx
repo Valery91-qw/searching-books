@@ -1,9 +1,8 @@
-
 type PropsType = {
     option: Array<string>
 }
 
-export const Select = (props: PropsType) => {
+export const SearchOptions = (props: PropsType) => {
 
     return(
         <select>
