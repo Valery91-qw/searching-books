@@ -26,6 +26,7 @@ export type BookTypes = {
             thumbnail: string
         }
         pageCount: number
+        title: string
     }
 }
 export type ResponseType = {

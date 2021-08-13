@@ -7,7 +7,6 @@ function App() {
     return (
         <div className={style.wrapper}>
             <Header/>
-            <body>body</body>
         </div>
     );
 }
