@@ -1,16 +1,21 @@
 .input__wrapper {
     display: flex;
     width: 30%;
-    margin: 0 auto;
-    border: 1px solid black;
+    margin: 0.5em auto;
 }
 .input{
     width: 100%;
     border: none;
+    font-size: 1em;
 }
 .icon {
     display: inline;
-    padding: 10px;
+    width: inherit;
+}
+.button {
+    border: none;
     width: 30px;
-    background-color: black;
+    height: 30px;
+    padding: 0;
+    cursor: pointer;
 }
