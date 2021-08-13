@@ -23,7 +23,7 @@ export const Header = () => {
 
     return(
         <header className={style.wrapper}>
-            <h2>Search for books</h2>
+            <h2 className={style.title}>Search for books</h2>
             <SearchField />
             <SearchOptions setOptionValue={setOptionValue} option={category} />
             <SearchOptions setOptionValue={setOptionValue} option={sorted} />
