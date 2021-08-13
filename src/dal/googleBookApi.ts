@@ -8,7 +8,7 @@ export const googleBookApi = {
       return axios.get(`https://www.googleapis.com/books/v1/volumes`, {
           params: {
               key: API_KEY,
-              q: 'javascript',
+              q: searchString,
           }
       })
     }
