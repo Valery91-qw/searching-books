@@ -18,6 +18,13 @@ export default function searchReducer(state = initialSearch, action: SearchActio
                 sorted: [...state.sorted],
                 currentSort: action.sort,
             }
+        case search_constant.SET_SEARCH_VALUE:
+            return {
+                ...state,
+                categories: [...state.categories],
+                sorted: [...state.categories],
+                searchValue: action.searchValue
+            }
         default: return state
     }
 }

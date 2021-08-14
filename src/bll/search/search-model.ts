@@ -5,6 +5,7 @@ export const initialSearch: SearchStateType = {
     elementsCount: 30,
     currentCategory: 'all',
     currentSort: 'relevance',
+    searchValue: ''
 }
 export type SearchStateType = {
     categories: Array<string>
@@ -12,4 +13,5 @@ export type SearchStateType = {
     elementsCount: number
     currentCategory: string
     currentSort: string
+    searchValue: string
 }

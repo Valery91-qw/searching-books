@@ -14,12 +14,12 @@ export const Header = () => {
 
     const setOptionValue = useCallback((event: ChangeEvent<HTMLSelectElement>) => {
         let selectedValue = event.currentTarget.value
-        if(category.includes(selectedValue)) {
-            dispatch(setCategory(selectedValue))
-        } else {
+        if(sorted.includes(selectedValue)) {
             dispatch(setSort(selectedValue))
+        } else {
+            dispatch(setCategory(selectedValue))
         }
-    },[category, dispatch])
+    },[dispatch, sorted])
 
     return(
         <header className={style.wrapper}>

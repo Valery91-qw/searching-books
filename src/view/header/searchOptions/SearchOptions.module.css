@@ -1,0 +1,8 @@
+.wrapper {
+    margin: 0.5em 1em;
+    padding: 0.2em;
+    font-size: 1em;
+}
+.wrapper > option {
+    font-size: 1em;
+}

@@ -10,7 +10,8 @@ beforeEach(() => {
         sorted: ['first', 'second'],
         currentCategory: 'one',
         currentSort: 'first',
-        elementsCount: 10
+        elementsCount: 10,
+        searchValue: ''
     }
 })
 
