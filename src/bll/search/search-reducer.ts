@@ -22,7 +22,7 @@ export default function searchReducer(state = initialSearch, action: SearchActio
             return {
                 ...state,
                 categories: [...state.categories],
-                sorted: [...state.categories],
+                sorted: [...state.sorted],
                 searchValue: action.searchValue
             }
         default: return state
