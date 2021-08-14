@@ -1,21 +1,13 @@
-import {applyMiddleware, combineReducers, createStore} from "redux";
+import {combineReducers, createStore} from "redux";
 import searchReducer from "./search/search-reducer";
-import createSagaMiddleware from 'redux-saga'
-import {takeEvery } from 'redux-saga/effects'
-import {getBooks} from "./search/search-operations";
+import booksReducer from "./books/books-reducer";
 
 export const rootReducer = combineReducers({
-    search: searchReducer
+    search: searchReducer,
+    books: booksReducer,
 })
 
-const saga = createSagaMiddleware()
 
-export const store = createStore(rootReducer, applyMiddleware(saga))
-
-saga.run(watcher)
-
-function* watcher() {
-    yield takeEvery( 'getBooks', getBooks)
-}
+export const store = createStore(rootReducer)
 
 export type RootReducerType = ReturnType<typeof rootReducer>

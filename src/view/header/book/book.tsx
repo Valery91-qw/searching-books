@@ -1,20 +1,20 @@
-import {BookTypes} from "../../../dal/googleBookApi";
+import {BookType} from "../../../bll/books/books-model";
 
-type PropsType = {
-    book: BookTypes
-}
+export const Book = ({ authors, categories, pageCount, title, imageLinks, description}: BookType) => {
 
-export const Book = (props: PropsType) => {
+    const viewCategories = categories.split(',')
+    const viewAuthor = authors.split(',')
+
     return(
         <div>
-            <img alt="book_image" src={props.book.volumeInfo.imageLinks.smallThumbnail}/>
-            {props.book.volumeInfo.categories
-                ? <p>{props.book.volumeInfo.categories[0]}</p>
+            <img alt="book_image" src={imageLinks.smallThumbnail}/>
+            {viewCategories
+                ? <p>{viewCategories[0]}</p>
                 : null
             }
-            <h3>{props.book.volumeInfo.title}</h3>
-            {props.book.volumeInfo.authors
-                ? props.book.volumeInfo.authors.map((auth, i) => <p key={auth + i}>{auth}</p>)
+            <h3>{title}</h3>
+            {viewAuthor
+                ? viewAuthor.map((auth, i) => <p key={auth + i}>{auth}</p>)
                 : null
             }
         </div>

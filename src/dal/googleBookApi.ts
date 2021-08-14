@@ -16,7 +16,7 @@ export const googleBookApi = {
 }
 
 
-export type BookTypes = {
+export type ResponseBookTypes = {
     volumeInfo: {
         authors: Array<string>
         categories: Array<string>
@@ -32,5 +32,5 @@ export type BookTypes = {
 export type ResponseType = {
     kind: string
     totalItems: number
-    items: Array<BookTypes>
+    items: Array<ResponseBookTypes>
 }
