@@ -71,5 +71,6 @@ describe('Books reducer', () => {
         expect(endState.books[0]).not.toBe(intermediateState.books[0])
         expect(endState.books[0].imageLinks).not.toBe(intermediateState.books[0].imageLinks)
         expect(endState.books.length).toBe(4)
+        expect(endState.books[1].categories).toBe(testData[1].categories)
     })
 })

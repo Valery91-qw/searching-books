@@ -1,30 +1,16 @@
 import {initialSearch, SearchStateType} from "./search-model";
 import {search_constant} from "./search-constants";
 import {SearchActionType} from "./search-actions";
+import {immutableChangeState} from "./search-utils";
 
 export default function searchReducer(state = initialSearch, action: SearchActionType): SearchStateType {
     switch (action.type) {
         case search_constant.SET_CATEGORY:
-            return {
-                ...state,
-                categories: [...state.categories],
-                sorted: [...state.sorted],
-                currentCategory: action.category,
-            }
+            return immutableChangeState(state, action.category, 'currentCategory')
         case search_constant.SET_SORT:
-            return {
-                ...state,
-                categories: [...state.categories],
-                sorted: [...state.sorted],
-                currentSort: action.sort,
-            }
+            return immutableChangeState(state, action.sort, 'currentSort')
         case search_constant.SET_SEARCH_VALUE:
-            return {
-                ...state,
-                categories: [...state.categories],
-                sorted: [...state.sorted],
-                searchValue: action.searchValue
-            }
+            return immutableChangeState(state, action.searchValue, 'searchValue')
         default: return state
     }
 }
