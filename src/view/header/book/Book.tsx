@@ -1,6 +1,6 @@
 import {BookType} from "../../../bll/books/books-model";
 
-export const Book = ({ authors, categories, pageCount, title, imageLinks, description}: BookType) => {
+export const Book = ({ authors, categories, title, imageLinks}: BookType) => {
 
     const viewCategories = categories.split(',')
     const viewAuthor = authors.split(',')
