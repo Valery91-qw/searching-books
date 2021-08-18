@@ -56,9 +56,9 @@ describe('redux saga', () => {
             }, title : 'some title', pageCount: 1}
       ]
 
-      const generator = fetchBooks(getBooks('hello'))
+      const generator = fetchBooks(getBooks('hello', 1))
 
-      expect(generator.next().value).toEqual(call(googleBookApiMock.getBooks, 'hello' ))
+      expect(generator.next().value).toEqual(call(googleBookApiMock.getBooks, 'hello' , 1))
 
       expect(generator.next(resolve).value).toEqual(put(putBooks(convertedType)))
 

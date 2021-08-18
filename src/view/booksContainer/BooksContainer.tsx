@@ -1,14 +1,13 @@
 import {Book} from "./book/Book";
 import React from "react";
-import {useSelector} from "react-redux";
-import {RootReducerType} from "../../bll/store";
 import {BookType} from "../../bll/books/books-model";
 
+type BooksContainerPropsType = {
+    totalBooks: number | undefined
+    books: Array<BookType>
+}
 
-export const BooksContainer = () => {
-
-    const books = useSelector<RootReducerType, Array<BookType>>(state => state.books.books)
-    const totalBooks = useSelector<RootReducerType, number | undefined>( state => state.books.totalCountBooks)
+export const BooksContainer = ({totalBooks, books}: BooksContainerPropsType) => {
 
     return(
         <div>

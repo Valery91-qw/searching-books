@@ -5,7 +5,7 @@ import {GetBooksType, putBooks, setTotalCountBooks} from "./books-actions";
 
 export function* fetchBooks (action: GetBooksType) {
 
-    const {data, status} = yield call(googleBookApi.getBooks, action.searchValue)
+    const {data, status} = yield call(googleBookApi.getBooks, action.searchValue, action.elementsCount)
 
     if(status === 200) {
         const booksStateModel = data.items.map((el: ResponseBookTypes): BookType => ({

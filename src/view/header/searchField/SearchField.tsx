@@ -8,6 +8,7 @@ import {getBooks} from "../../../bll/books/books-actions";
 export const SearchField = () => {
 
     const searchValue = useSelector<RootReducerType, string>(state => state.search.searchValue)
+    const elementsCount = useSelector<RootReducerType, number>(state => state.search.elementsCount)
     const dispatch = useDispatch()
 
     const handleSetSearchValue = (event: ChangeEvent<HTMLInputElement>) => {
@@ -16,7 +17,7 @@ export const SearchField = () => {
 
     const handlePressButton = (event: any) => {
        if(event.key === 'Enter' || event.type === 'click') {
-            dispatch(getBooks(searchValue))
+            dispatch(getBooks(searchValue, elementsCount))
        }
     }
 
