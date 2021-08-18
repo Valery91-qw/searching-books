@@ -15,6 +15,7 @@ export const BooksContainer = ({totalBooks, books}: BooksContainerPropsType) => 
             {books
                 ? books.map((book, i) => <Book {...book} key={i}/>)
                 : null}
+            {totalBooks !== undefined && totalBooks > 30 ? <button>ds</button> : null}
         </div>
     )
 }

@@ -1,24 +1,19 @@
 import style from './SearchField.module.css'
 import React, {ChangeEvent} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {setSearchValue} from "../../../bll/search/search-actions";
-import {RootReducerType} from "../../../bll/store";
-import {getBooks} from "../../../bll/books/books-actions";
 
-export const SearchField = () => {
+type SearchFieldPropsType = {
+    handlePressButton: (event: any) => void
+    searchValue: string
+}
 
-    const searchValue = useSelector<RootReducerType, string>(state => state.search.searchValue)
-    const elementsCount = useSelector<RootReducerType, number>(state => state.search.elementsCount)
+export const SearchField = ({handlePressButton, searchValue}: SearchFieldPropsType) => {
+
     const dispatch = useDispatch()
 
     const handleSetSearchValue = (event: ChangeEvent<HTMLInputElement>) => {
         dispatch(setSearchValue(event.currentTarget.value))
-    }
-
-    const handlePressButton = (event: any) => {
-       if(event.key === 'Enter' || event.type === 'click') {
-            dispatch(getBooks(searchValue, elementsCount))
-       }
     }
 
     return (
