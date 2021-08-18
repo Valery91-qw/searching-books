@@ -1,6 +1,6 @@
 import {render, screen} from "@testing-library/react";
-import {Book} from "./Book";
 import {BookType} from "../../../bll/books/books-model";
+import {Book} from "./Book";
 
 
 

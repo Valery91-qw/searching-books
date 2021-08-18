@@ -2,7 +2,7 @@ import {fetchBooks} from "./books-operations";
 import {watcher} from "../saga";
 import {call, put, takeEvery} from "redux-saga/effects";
 import {books_constants} from "./books-constants";
-import {getBooks, putBooks} from "./books-actions";
+import {getBooks, putBooks, setTotalCountBooks} from "./books-actions";
 import {googleBookApi, ResponseType} from "../../dal/googleBookApi";
 import {AxiosResponse} from "axios";
 import {BookType} from "./books-model";
@@ -61,5 +61,9 @@ describe('redux saga', () => {
       expect(generator.next().value).toEqual(call(googleBookApiMock.getBooks, 'hello' ))
 
       expect(generator.next(resolve).value).toEqual(put(putBooks(convertedType)))
+
+      expect(generator.next().value).toEqual(put(setTotalCountBooks(resolve.data.totalItems)))
+
+      expect(generator.next().done).toBeTruthy()
    })
 })

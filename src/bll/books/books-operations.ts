@@ -1,7 +1,7 @@
 import { call, put } from "redux-saga/effects";
 import {googleBookApi, ResponseBookTypes} from "../../dal/googleBookApi";
 import {BookType} from "./books-model";
-import {GetBooksType, putBooks} from "./books-actions";
+import {GetBooksType, putBooks, setTotalCountBooks} from "./books-actions";
 
 export function* fetchBooks (action: GetBooksType) {
 
@@ -17,5 +17,6 @@ export function* fetchBooks (action: GetBooksType) {
             authors: el?.volumeInfo?.authors?.join(','),
         }))
         yield put(putBooks(booksStateModel))
+        yield put(setTotalCountBooks(data.totalItems))
     }
 }

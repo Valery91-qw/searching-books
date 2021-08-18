@@ -1,10 +1,12 @@
 
 export const initialBooksState: BooksStateType = {
-    books: []
+    books: [],
+    totalCountBooks: undefined
 }
 
 export type BooksStateType = {
     books: Array<BookType>
+    totalCountBooks: number | undefined
 }
 
 export type BookType = {

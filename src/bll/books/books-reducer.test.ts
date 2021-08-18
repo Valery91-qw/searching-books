@@ -1,12 +1,13 @@
 import {BooksStateType, BookType} from "./books-model";
 import booksReducer from "./books-reducer";
-import {putBooks} from "./books-actions";
+import {putBooks, setTotalCountBooks} from "./books-actions";
 
 let startBooksState: BooksStateType
 
 beforeEach(() => {
     startBooksState = {
-        books: []
+        books: [],
+        totalCountBooks: undefined
     }
 })
 
@@ -72,5 +73,15 @@ describe('Books reducer', () => {
         expect(endState.books[0].imageLinks).not.toBe(intermediateState.books[0].imageLinks)
         expect(endState.books.length).toBe(4)
         expect(endState.books[1].categories).toBe(testData[1].categories)
+    })
+    test('actions creator setTotalCountBooks should set the passed number to state and return a new state object', () => {
+
+        const totalBooks = 5
+
+        const endState = booksReducer(startBooksState, setTotalCountBooks(totalBooks))
+
+        expect(startBooksState.totalCountBooks).toBeUndefined()
+        expect(endState.totalCountBooks).toBe(totalBooks)
+        expect(startBooksState).not.toBe(endState)
     })
 })
