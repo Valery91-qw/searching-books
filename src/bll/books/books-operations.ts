@@ -26,10 +26,6 @@ export function* fetchBooks () {
 
     } catch (e) {
 
-        console.log(e.message)
-
     }
-
-
 
 }

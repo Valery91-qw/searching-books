@@ -2,6 +2,8 @@ import {Book} from "./book/Book";
 import React from "react";
 import {BookType} from "../../bll/books/books-model";
 import style from "./BooksContainer.module.css"
+import {useDispatch} from "react-redux";
+import {getBooks} from "../../bll/books/books-actions";
 
 type BooksContainerPropsType = {
     totalBooks: number | undefined
@@ -9,6 +11,12 @@ type BooksContainerPropsType = {
 }
 
 export const BooksContainer = ({totalBooks, books}: BooksContainerPropsType) => {
+
+    const dispatch = useDispatch()
+
+    const handleClick = () => {
+        dispatch(getBooks())
+    }
 
     return (
         <div className={style.wrapper}>
@@ -18,7 +26,9 @@ export const BooksContainer = ({totalBooks, books}: BooksContainerPropsType) => 
                     ? books.map((book, i) => <Book {...book} key={i}/>)
                     : null}
             </div>
-            {totalBooks !== undefined && totalBooks > 30 ? <button>ds</button> : null}
+            {totalBooks !== undefined && totalBooks > 30
+                ? <button onClick={handleClick} className={style.button}>more results</button>
+                : null}
         </div>
     )
 }
