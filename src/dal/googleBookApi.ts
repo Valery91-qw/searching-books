@@ -4,12 +4,13 @@ import {apiKey} from "./variable";
 const API_KEY = process.env.REACT_APP_APIKEY || apiKey
 
 export const googleBookApi = {
-    getBooks(searchString: string, elementsAmount: number) {
+    getBooks(searchString: string, elementsAmount: number, sorted: string, categories?: string) {
       return axios.get<ResponseType>(`https://www.googleapis.com/books/v1/volumes`, {
           params: {
               key: API_KEY,
               q: searchString,
               maxResults: elementsAmount,
+              orderBy: sorted,
           }
       })
           .then(res => res)

@@ -1,11 +1,13 @@
 import {fetchBooks} from "./books-operations";
 import {watcher} from "../saga";
-import {call, put, takeEvery} from "redux-saga/effects";
+import {call, put, select, takeEvery} from "redux-saga/effects";
 import {books_constants} from "./books-constants";
-import {getBooks, putBooks, setTotalCountBooks} from "./books-actions";
+import { putBooks, setTotalCountBooks} from "./books-actions";
 import {googleBookApi, ResponseType} from "../../dal/googleBookApi";
 import {AxiosResponse} from "axios";
 import {BookType} from "./books-model";
+import {allSearchState} from "../search/search-selectors";
+import {SearchStateType} from "../search/search-model";
 
 jest.mock("../../dal/googleBookApi")
 
@@ -22,7 +24,7 @@ describe('redux saga', () => {
 
    test('The fetchBooks saga should pass the test correctly with the current test data', () => {
 
-      const resolve: AxiosResponse<ResponseType> = {
+      const resolve:AxiosResponse<ResponseType> = {
          status: 200,
          statusText: 'OK',
          data: {
@@ -56,9 +58,27 @@ describe('redux saga', () => {
             }, title : 'some title', pageCount: 1}
       ]
 
-      const generator = fetchBooks(getBooks('hello', 1))
+      const fakeState:SearchStateType = {
+         categories: ['one', 'two'],
+         sorted: ['tree'],
+         elementsCount: 1,
+         currentCategory: 'one',
+         currentSort: 'two',
+         searchValue: 'fake'
+      }
 
-      expect(generator.next().value).toEqual(call(googleBookApiMock.getBooks, 'hello' , 1))
+      const generator = fetchBooks()
+
+      expect(generator.next().value).toEqual(select(allSearchState))
+
+      expect(generator.next(fakeState).value)
+          .toEqual(call(
+              googleBookApiMock.getBooks,
+              fakeState.searchValue ,
+              fakeState.elementsCount,
+              fakeState.currentSort,
+              fakeState.currentCategory
+          ));
 
       expect(generator.next(resolve).value).toEqual(put(putBooks(convertedType)))
 
