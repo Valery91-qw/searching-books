@@ -1,4 +1,5 @@
 import {BookType} from "../../../bll/books/books-model";
+import style from "./Book.module.css"
 
 export const Book = ({authors, categories, title, imageLinks}: BookType) => {
 
@@ -6,7 +7,7 @@ export const Book = ({authors, categories, title, imageLinks}: BookType) => {
     const viewAuthor = authors?.split(',')
 
     return (
-            <a href='/'>
+            <a className={style.wrapper} href='/'>
                 <img alt="book_image" src={imageLinks.smallThumbnail}/>
                 {viewCategories
                     ? <p>{viewCategories[0]}</p>
