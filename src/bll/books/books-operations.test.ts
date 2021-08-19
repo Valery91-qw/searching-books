@@ -66,12 +66,12 @@ describe('redux saga', () => {
          currentSort: 'two',
          searchValue: 'fake'
       }
-
+      const args: Array<any> = [fakeState, resolve]
       const generator = fetchBooks()
 
       expect(generator.next().value).toEqual(select(allSearchState))
 
-      expect(generator.next(fakeState).value)
+      expect(generator.next(args[0]).value)
           .toEqual(call(
               googleBookApiMock.getBooks,
               fakeState.searchValue ,
@@ -80,7 +80,7 @@ describe('redux saga', () => {
               fakeState.currentCategory
           ));
 
-      expect(generator.next(resolve).value).toEqual(put(putBooks(convertedType)))
+      expect(generator.next(args[1]).value).toEqual(put(putBooks(convertedType)))
 
       expect(generator.next().value).toEqual(put(setTotalCountBooks(resolve.data.totalItems)))
 
