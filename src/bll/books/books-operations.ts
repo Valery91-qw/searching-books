@@ -9,9 +9,9 @@ export function* fetchBooks () {
 
     const {currentCategory, currentSort, elementsCount, searchValue }:SearchStateType = yield select(allSearchState)
 
-    const {data, status} = yield call(googleBookApi.getBooks, searchValue, elementsCount , currentSort, currentCategory)
+    try {
+        const {data} = yield call(googleBookApi.getBooks, searchValue, elementsCount , currentSort, currentCategory)
 
-    if(status === 200) {
         const booksStateModel = data.items.map((el: ResponseBookTypes): BookType => ({
             imageLinks: {...el.volumeInfo.imageLinks},
             description: el.volumeInfo.description,
@@ -20,7 +20,16 @@ export function* fetchBooks () {
             categories: el?.volumeInfo?.categories?.join(','),
             authors: el?.volumeInfo?.authors?.join(','),
         }))
+
         yield put(putBooks(booksStateModel))
         yield put(setTotalCountBooks(data.totalItems))
+
+    } catch (e) {
+
+        console.log(e.message)
+
     }
+
+
+
 }
