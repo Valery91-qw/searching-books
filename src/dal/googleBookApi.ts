@@ -14,10 +14,7 @@ export const googleBookApi = {
               maxResults: elementsAmount,
           }
       })
-          .then(res =>{
-              console.log({...res})
-              return res
-          }  )
+          .then(res =>  res)
     }
 }
 
