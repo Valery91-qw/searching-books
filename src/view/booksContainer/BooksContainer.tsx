@@ -15,7 +15,7 @@ export const BooksContainer = ({totalBooks, books}: BooksContainerPropsType) => 
     const dispatch = useDispatch()
 
     const handleClick = () => {
-        dispatch(getBooks())
+        dispatch(getBooks(books.length))
     }
 
     return (

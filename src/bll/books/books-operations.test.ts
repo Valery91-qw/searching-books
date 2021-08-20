@@ -2,7 +2,7 @@ import {fetchBooks} from "./books-operations";
 import {watcher} from "../saga";
 import {call, put, select, takeEvery} from "redux-saga/effects";
 import {books_constants} from "./books-constants";
-import { putBooks, setTotalCountBooks} from "./books-actions";
+import {getBooks, putBooks, putNewSetBooks, setTotalCountBooks} from "./books-actions";
 import {googleBookApi, ResponseType} from "../../dal/googleBookApi";
 import {AxiosResponse} from "axios";
 import {BookType} from "./books-model";
@@ -22,7 +22,7 @@ describe('redux saga', () => {
       expect(generator.next().done).toBeTruthy()
    })
 
-   test('The fetchBooks saga should pass the test correctly with the current test data', () => {
+   describe('The fetchBooks saga should pass the test correctly with the current test data', () => {
 
       const resolve:AxiosResponse<ResponseType> = {
          status: 200,
@@ -52,10 +52,16 @@ describe('redux saga', () => {
       }
 
       const convertedType: Array<BookType> = [
-         {authors: 'one,two', categories: 'one,two', description: 'fake', imageLinks: {
+         {
+            authors: 'one,two',
+            categories: 'one,two',
+            description: 'fake',
+            imageLinks: {
             smallThumbnail: 'fake small',
                thumbnail: 'fake large',
-            }, title : 'some title', pageCount: 1}
+            },
+            title : 'some title',
+            pageCount: 1}
       ]
 
       const fakeState:SearchStateType = {
@@ -66,24 +72,50 @@ describe('redux saga', () => {
          currentSort: 'two',
          searchValue: 'fake'
       }
+
       const args: Array<any> = [fakeState, resolve]
-      const generator = fetchBooks()
+      test('If pass a non-zero index to getBooks action creator then it should call putBooks action creator', () => {
+         const generator = fetchBooks(getBooks(1))
 
-      expect(generator.next().value).toEqual(select(allSearchState))
+         expect(generator.next().value).toEqual(select(allSearchState))
 
-      expect(generator.next(args[0]).value)
-          .toEqual(call(
-              googleBookApiMock.getBooks,
-              fakeState.searchValue ,
-              fakeState.elementsCount,
-              fakeState.currentSort,
-              fakeState.currentCategory
-          ));
+         expect(generator.next(args[0]).value)
+             .toEqual(call(
+                 googleBookApiMock.getBooks,
+                 fakeState.searchValue ,
+                 fakeState.elementsCount,
+                 fakeState.currentSort,
+                 fakeState.currentCategory,
+                 1
+             ));
 
-      expect(generator.next(args[1]).value).toEqual(put(putBooks(convertedType)))
+         expect(generator.next(args[1]).value).toEqual(put(putBooks(convertedType)))
 
-      expect(generator.next().value).toEqual(put(setTotalCountBooks(resolve.data.totalItems)))
+         expect(generator.next().value).toEqual(put(setTotalCountBooks(resolve.data.totalItems)))
 
-      expect(generator.next().done).toBeTruthy()
+         expect(generator.next().done).toBeTruthy()
+      })
+      test('If pass a zero index to getBooks action creator then it should call putNewSetBoos action creator', () => {
+         const generator = fetchBooks(getBooks(0))
+
+         expect(generator.next().value).toEqual(select(allSearchState))
+
+         expect(generator.next(args[0]).value)
+             .toEqual(call(
+                 googleBookApiMock.getBooks,
+                 fakeState.searchValue ,
+                 fakeState.elementsCount,
+                 fakeState.currentSort,
+                 fakeState.currentCategory,
+                 0
+             ));
+
+         expect(generator.next(args[1]).value).toEqual(put(putNewSetBooks(convertedType)))
+
+         expect(generator.next().value).toEqual(put(setTotalCountBooks(resolve.data.totalItems)))
+
+         expect(generator.next().done).toBeTruthy()
+      })
+
    })
 })

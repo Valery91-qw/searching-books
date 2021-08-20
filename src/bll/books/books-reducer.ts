@@ -18,6 +18,11 @@ export default function booksReducer(state = initialBooksState, action: BooksAct
                 books: [...state.books.map(el => ({...el, imageLinks: {...el.imageLinks}}))],
                 totalCountBooks: action.totalBooks
             }
+        case books_constants.PUT_NEW_SET_BOOKS:
+            return {
+                ...state,
+                books: [...action.books]
+            }
         default: return state
     }
 }

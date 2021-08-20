@@ -1,6 +1,6 @@
 import {BooksStateType, BookType} from "./books-model";
 import booksReducer from "./books-reducer";
-import {putBooks, setTotalCountBooks} from "./books-actions";
+import {putBooks, putNewSetBooks, setTotalCountBooks} from "./books-actions";
 
 let startBooksState: BooksStateType
 
@@ -83,5 +83,38 @@ describe('Books reducer', () => {
         expect(startBooksState.totalCountBooks).toBeUndefined()
         expect(endState.totalCountBooks).toBe(totalBooks)
         expect(startBooksState).not.toBe(endState)
+    })
+    test('action creator PutNewSetBooks must overwrite the existing data', () => {
+        startBooksState = {
+            totalCountBooks: 1,
+            books: [
+                {
+                    categories: "one, two",
+                    title: 'test title',
+                    authors: 'nik, mike',
+                    description: 'tested descriptions',
+                    pageCount: 430,
+                    imageLinks: {
+                        thumbnail: 'fake link 1',
+                        smallThumbnail: 'fake link 2',
+                    }}
+            ]
+        }
+
+        const newBook =  {
+            categories: 'three ,four',
+            title: 'test title 1',
+            authors: 'nik 1, mike 1',
+            description: 'tested descriptions',
+            pageCount: 222,
+            imageLinks: {
+                thumbnail: 'fake link 3',
+                smallThumbnail: 'fake link 4'
+            }}
+
+        const endState = booksReducer(startBooksState, putNewSetBooks([newBook]))
+
+        expect(endState.books.length).toBe(1)
+        expect(endState.books[0].title).toBe(newBook.title)
     })
 })

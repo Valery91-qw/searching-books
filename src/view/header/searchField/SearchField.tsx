@@ -18,7 +18,7 @@ export const SearchField = () => {
 
     const handlePressButton = (event: any) => {
         if(event.key === 'Enter' || event.type === 'click') {
-            dispatch(getBooks())
+            dispatch(getBooks(0))
         }
     }
 
