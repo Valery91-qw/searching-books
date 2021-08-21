@@ -16,8 +16,7 @@ export function* fetchBooks (action: GetBooksType) {
             elementsCount ,
             currentSort,
             currentCategory,
-            action.lastIndex
-        )
+            action.lastIndex )
 
         const booksStateModel = toBooksModelState(data.items)
 

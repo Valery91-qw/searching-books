@@ -1,0 +1,23 @@
+.wrapper {
+    position: relative;
+    height: 10px;
+    width: 100%;
+    background-color: #999999;
+}
+.inner {
+    position: absolute;
+    height: 100%;
+    width: 30px;
+    background-color: black;
+    animation: progeress 2s infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes progeress {
+    from {
+        left: 0;
+    }
+    to {
+        left: calc(100% - 30px);
+    }
+}

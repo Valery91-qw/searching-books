@@ -4,7 +4,6 @@ import {BookType} from "../../bll/books/books-model";
 import {renderWithRedux} from "../../utils/create-store-for-test";
 
 describe('booksContainer component', () => {
-
     test('The component should render two test items, a field with their number', () => {
 
         const testData: Array<BookType> = [
