@@ -7,4 +7,8 @@ describe('Progress bar component', () => {
         render(<ProgressBar isProgress={true} />)
         expect(screen.getByRole('progressbar')).toBeInTheDocument()
     })
+    test('if the props isProgress equal false component doesn\'t displayed', () => {
+        render(<ProgressBar isProgress={false} />)
+        expect(screen.queryByRole('progressbar')).not.toBeInTheDocument()
+    })
 })

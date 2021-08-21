@@ -39,6 +39,7 @@ describe('Books reducer', () => {
         const endState = booksReducer(startBooksState, putBooks(testData))
 
         expect(endState.books.length).toBe(2)
+        expect(endState.books).toContain(testData[0] && testData[1])
         expect(endState.books[0].title).toBe(testData[0].title)
         expect(startBooksState.books.length).toBe(0)
     })
