@@ -3,6 +3,7 @@
     width: 23%;
     color: black;
 }
+
 .wrapper:hover {
     background-color: rgba(140, 140, 140, 0.5);
 }

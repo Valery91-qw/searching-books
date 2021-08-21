@@ -11,7 +11,7 @@ export const rootReducer = combineReducers({
 
 const saga = createSagaMiddleware()
 
-export const store = createStore(rootReducer, applyMiddleware( saga ))
+export const store = createStore(rootReducer, applyMiddleware(saga))
 
 saga.run(watcher)
 

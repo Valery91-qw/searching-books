@@ -3,17 +3,16 @@ import {BookType} from "../../../bll/books/books-model";
 import {Book} from "./Book";
 
 
-
 const testData: BookType = {
-        description: 'Test Book',
-        imageLinks: {
-            smallThumbnail: 'empty path',
-            thumbnail: 'empty path'
-        },
-        authors: 'one Author,two Author',
-        categories: 'first,second',
-        pageCount: 20,
-        title: 'empty book'
+    description: 'Test Book',
+    imageLinks: {
+        smallThumbnail: 'empty path',
+        thumbnail: 'empty path'
+    },
+    authors: 'one Author,two Author',
+    categories: 'first,second',
+    pageCount: 20,
+    title: 'empty book'
 
 }
 

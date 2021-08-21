@@ -11,6 +11,7 @@ export default function searchReducer(state = initialSearch, action: SearchActio
             return immutableChangeState(state, action.sort, 'currentSort')
         case search_constant.SET_SEARCH_VALUE:
             return immutableChangeState(state, action.searchValue, 'searchValue')
-        default: return state
+        default:
+            return state
     }
 }

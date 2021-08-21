@@ -1,4 +1,3 @@
-
 export const initialBooksState: BooksStateType = {
     books: [],
     totalCountBooks: undefined
@@ -10,13 +9,13 @@ export type BooksStateType = {
 }
 
 export type BookType = {
-        authors: string
-        categories: string
-        description: string
-        imageLinks: {
-            smallThumbnail: string
-            thumbnail: string
-        }
-        pageCount: number
-        title: string
+    authors: string
+    categories: string
+    description: string
+    imageLinks: {
+        smallThumbnail: string
+        thumbnail: string
+    }
+    pageCount: number
+    title: string
 }

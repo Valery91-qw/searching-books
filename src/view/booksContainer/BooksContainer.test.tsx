@@ -1,4 +1,4 @@
-import { screen } from "@testing-library/react";
+import {screen} from "@testing-library/react";
 import {BooksContainer} from "./BooksContainer";
 import {BookType} from "../../bll/books/books-model";
 import {renderWithRedux} from "../../utils/create-store-for-test";
@@ -31,7 +31,7 @@ describe('booksContainer component', () => {
             }
         ];
 
-        renderWithRedux(<BooksContainer totalBooks={testData.length} books={testData} />)
+        renderWithRedux(<BooksContainer totalBooks={testData.length} books={testData}/>)
 
         expect(screen.getAllByRole('img').length).toBe(2)
         expect(screen.getByText(/Found/)).toBeInTheDocument()
@@ -40,7 +40,7 @@ describe('booksContainer component', () => {
     test('If the component receives more than thirty elements, then the button should be rendered', () => {
         const testData = ((book: BookType) => {
             let result: Array<BookType> = []
-            for (let i = 0 ; i < 31; i++) {
+            for (let i = 0; i < 31; i++) {
                 result.push({...book, pageCount: book.pageCount * i})
             }
             return result
@@ -50,9 +50,10 @@ describe('booksContainer component', () => {
             title: 'some title',
             description: 'fake description',
             pageCount: 3,
-            imageLinks: { smallThumbnail: 'small', thumbnail: 'large'} });
+            imageLinks: {smallThumbnail: 'small', thumbnail: 'large'}
+        });
 
-        renderWithRedux(<BooksContainer totalBooks={testData.length} books={testData} />)
+        renderWithRedux(<BooksContainer totalBooks={testData.length} books={testData}/>)
 
         expect(screen.getByRole('button')).toBeInTheDocument()
         expect(screen.getAllByRole('img').length).toBe(testData.length)

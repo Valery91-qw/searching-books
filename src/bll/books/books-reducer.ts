@@ -23,6 +23,7 @@ export default function booksReducer(state = initialBooksState, action: BooksAct
                 ...state,
                 books: [...action.books]
             }
-        default: return state
+        default:
+            return state
     }
 }

@@ -1,4 +1,3 @@
-
 export const initialSearch: SearchStateType = {
     categories: ['all', 'art', 'biography', 'computers', 'history', 'medical', 'poetry'],
     sorted: ['relevance', 'newest'],

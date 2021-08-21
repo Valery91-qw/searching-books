@@ -1,5 +1,5 @@
 .wrapper {
-   text-align: center;
+    text-align: center;
 }
 
 .booksWrapper {
@@ -22,6 +22,7 @@
     color: white;
     transition: linear 0.3s;
 }
+
 .button:hover {
     color: black;
     background-color: white;

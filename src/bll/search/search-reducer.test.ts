@@ -5,8 +5,8 @@ import searchReducer from "./search-reducer";
 let startSearchState: SearchStateType
 
 beforeEach(() => {
-    startSearchState ={
-        categories: ['one','two'],
+    startSearchState = {
+        categories: ['one', 'two'],
         sorted: ['first', 'second'],
         currentCategory: 'one',
         currentSort: 'first',

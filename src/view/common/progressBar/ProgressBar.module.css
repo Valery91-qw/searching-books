@@ -2,22 +2,23 @@
     position: relative;
     height: 10px;
     width: 100%;
-    background-color: #999999;
+    background-color: #ffc186;
 }
+
 .inner {
     position: absolute;
     height: 100%;
-    width: 30px;
-    background-color: black;
-    animation: progeress 2s infinite;
+    width: 5em;
+    background-color: #ff9e1c;
+    animation: progress 2s infinite;
     animation-timing-function: linear;
 }
 
-@keyframes progeress {
+@keyframes progress {
     from {
         left: 0;
     }
     to {
-        left: calc(100% - 30px);
+        left: calc(100% - 5em);
     }
 }

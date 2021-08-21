@@ -6,13 +6,13 @@ type PropsType = {
 
 export const ProgressBar = ({isProgress}: PropsType) => {
 
-    if(isProgress) {
+    if (isProgress) {
         return (
-            <div className={style.wrapper}>
-                <div className={style.inner}> </div>
+            <div role="progressbar" className={style.wrapper}>
+                <div className={style.inner}/>
             </div>
         )
     } else {
-        return <></>
+        return null
     }
 }
