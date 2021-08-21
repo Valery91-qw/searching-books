@@ -1,13 +1,13 @@
 import { call, put, select } from "redux-saga/effects";
-import {googleBookApi, ResponseBookTypes} from "../../dal/googleBookApi";
-import {BookType} from "./books-model";
+import {googleBookApi} from "../../dal/googleBookApi";
 import {GetBooksType, putBooks, putNewSetBooks, setTotalCountBooks} from "./books-actions";
-import {allSearchState} from "../search/search-selectors";
+import {getAllSearchState} from "../search/search-selectors";
 import {SearchStateType} from "../search/search-model";
+import {toBooksModelState} from "./books-utils";
 
 export function* fetchBooks (action: GetBooksType) {
 
-    const {currentCategory, currentSort, elementsCount, searchValue }:SearchStateType = yield select(allSearchState)
+    const {currentCategory, currentSort, elementsCount, searchValue }:SearchStateType = yield select(getAllSearchState)
 
     try {
         const {data} = yield call(
@@ -19,14 +19,8 @@ export function* fetchBooks (action: GetBooksType) {
             action.lastIndex
         )
 
-        const booksStateModel = data.items.map((el: ResponseBookTypes): BookType => ({
-            imageLinks: {...el.volumeInfo.imageLinks},
-            description: el.volumeInfo.description,
-            pageCount: el.volumeInfo.pageCount,
-            title: el.volumeInfo.title,
-            categories: el?.volumeInfo?.categories?.join(','),
-            authors: el?.volumeInfo?.authors?.join(','),
-        }))
+        const booksStateModel = toBooksModelState(data.items)
+
         if(action.lastIndex === 0) {
             yield put(putNewSetBooks(booksStateModel))
         } else {

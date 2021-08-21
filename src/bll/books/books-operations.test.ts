@@ -6,7 +6,7 @@ import {getBooks, putBooks, putNewSetBooks, setTotalCountBooks} from "./books-ac
 import {googleBookApi, ResponseType} from "../../dal/googleBookApi";
 import {AxiosResponse} from "axios";
 import {BookType} from "./books-model";
-import {allSearchState} from "../search/search-selectors";
+import { getAllSearchState } from "../search/search-selectors";
 import {SearchStateType} from "../search/search-model";
 
 jest.mock("../../dal/googleBookApi")
@@ -77,7 +77,7 @@ describe('redux saga', () => {
       test('If pass a non-zero index to getBooks action creator then it should call putBooks action creator', () => {
          const generator = fetchBooks(getBooks(1))
 
-         expect(generator.next().value).toEqual(select(allSearchState))
+         expect(generator.next().value).toEqual(select(getAllSearchState))
 
          expect(generator.next(args[0]).value)
              .toEqual(call(
@@ -98,7 +98,7 @@ describe('redux saga', () => {
       test('If pass a zero index to getBooks action creator then it should call putNewSetBoos action creator', () => {
          const generator = fetchBooks(getBooks(0))
 
-         expect(generator.next().value).toEqual(select(allSearchState))
+         expect(generator.next().value).toEqual(select(getAllSearchState))
 
          expect(generator.next(args[0]).value)
              .toEqual(call(

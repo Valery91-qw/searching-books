@@ -1,3 +1,3 @@
 import {RootReducerType} from "../store";
 
-export const allSearchState = (state: RootReducerType) => state.search
+export const getAllSearchState = (state: RootReducerType) => state.search
